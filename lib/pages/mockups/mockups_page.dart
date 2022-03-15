@@ -11,7 +11,7 @@ class MockupsPage extends StatefulWidget {
 }
 
 class _MockupsPageState extends State<MockupsPage> {
-  List<String> push = ['Getyourmoney', 'Replicatetinder'];
+  List<String> push = ['Getyourmoney', 'Replicatetinder','Cpf'];
   @override
   Widget build(BuildContext context) {
     return Scaffold(

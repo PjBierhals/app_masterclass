@@ -1,6 +1,7 @@
 import 'package:app_masterclass/pages/about/about_page.dart';
 import 'package:app_masterclass/pages/activites/activites_page.dart';
 import 'package:app_masterclass/pages/animations/expansion_panel_list/expansion_panel_list.dart';
+import 'package:app_masterclass/pages/mockups/cpf/cpf.dart';
 import 'package:flutter/material.dart';
 import 'pages/animations/animations_page.dart';
 import 'pages/animations/floating_button/floating_button.dart';
@@ -66,6 +67,7 @@ class MyApp extends StatelessWidget {
           'Replicatetinder': (context) => const ReplicateTinderPage(),
           'Floatingbutton': (context) => const FloatingButtonPage(),
           'Expansionpanellist':(context) => const ExpansionPanelListPage(),
+          'Cpf':(context)=>const CpfsPage(),
         });
   }
 }
