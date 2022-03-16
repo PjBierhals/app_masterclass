@@ -1,6 +1,8 @@
+import 'dart:math';
+
 import 'package:app_masterclass/components/app_bar.dart';
 import 'package:flutter/material.dart';
-
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import '../../../models/cpf_model.dart';
 
 class CpfsPage extends StatefulWidget {
@@ -12,20 +14,28 @@ class CpfsPage extends StatefulWidget {
 
 class _CpfPageState extends State<CpfsPage> {
   var result = 'Resultado';
-  var exemploCPF = '12345678901';
-
   var cpf = '';
+
   _validaCPF() {
     final model = CpfModel(cpfNumber: cpf);
     final resultValido = model.getIsValid();
 
-    if (cpf.length >11 || resultValido == false) {
+    if (cpf.length > 11 || resultValido == false) {
       result = 'CPF INVALIDO';
     } else {
       result = 'CPF VALIDO';
     }
     setState(() {});
   }
+
+  String _geraCPF() {
+    final model = CpfModel(cpfNumber: cpf);
+    final cpfGerado = model.generateNumberCpf.toString();
+    return cpfGerado;
+  }
+
+  final maskCpf = MaskTextInputFormatter(
+      mask: "###.###.###-##", filter: {"#": RegExp(r'[0-9]')});
 
   @override
   Widget build(BuildContext context) {
@@ -35,17 +45,22 @@ class _CpfPageState extends State<CpfsPage> {
         title: 'Gerador e Validador CPF',
       ),
       body: Padding(
-        padding: const EdgeInsets.all(15.0),
+        padding: const EdgeInsets.all(50.0),
         child: Column(
           children: [
             TextField(
+              inputFormatters: [maskCpf],
               style: Theme.of(context).textTheme.headline1,
-              onChanged: (text) => cpf = text,
+              onChanged: (text) {
+                text = maskCpf.getUnmaskedText();
+                cpf = text;
+              },
+              textAlign: TextAlign.center,
               decoration: InputDecoration(
-                labelText: 'CPF',
+                labelText: 'Entre Com CPF',
                 labelStyle: Theme.of(context).textTheme.headline2,
-                hintText: 'digite',
-                hintStyle: Theme.of(context).textTheme.headline1,
+                hintText: 'Digite o Número',
+                hintStyle: Theme.of(context).textTheme.headline2,
                 filled: true,
                 fillColor: Theme.of(context).primaryColor,
               ),
@@ -57,7 +72,7 @@ class _CpfPageState extends State<CpfsPage> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 ElevatedButton(
-                  onPressed: _validaCPF,
+                  onPressed: _geraCPF,
                   child: const Text('Gerar'),
                   style: ElevatedButton.styleFrom(
                     primary: Theme.of(context).primaryColor,
