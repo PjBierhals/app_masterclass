@@ -1,4 +1,3 @@
-import 'dart:math';
 
 import 'package:app_masterclass/components/app_bar.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +14,7 @@ class CpfsPage extends StatefulWidget {
 class _CpfPageState extends State<CpfsPage> {
   var result = 'Resultado';
   var cpf = '';
+ 
 
   _validaCPF() {
     final model = CpfModel(cpfNumber: cpf);
@@ -28,14 +28,17 @@ class _CpfPageState extends State<CpfsPage> {
     setState(() {});
   }
 
-  String _geraCPF() {
-    final model = CpfModel(cpfNumber: cpf);
-    final cpfGerado = model.generateNumberCpf.toString();
-    return cpfGerado;
+  _geraCPF() {
+    final model = CpfModel(cpfNumber: '');
+    result = model.generateNumberCpf.join(" ");
+
+    setState(() {});
   }
 
   final maskCpf = MaskTextInputFormatter(
       mask: "###.###.###-##", filter: {"#": RegExp(r'[0-9]')});
+
+  TextEditingController myController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +52,7 @@ class _CpfPageState extends State<CpfsPage> {
         child: Column(
           children: [
             TextField(
+              keyboardType: TextInputType.number,
               inputFormatters: [maskCpf],
               style: Theme.of(context).textTheme.headline1,
               onChanged: (text) {
@@ -94,10 +98,12 @@ class _CpfPageState extends State<CpfsPage> {
               ],
             ),
             Expanded(
-              child: Center(
-                child: Text(result),
+                child: Center(
+              child: Text(
+                result,
+                style: Theme.of(context).textTheme.headline1,
               ),
-            ),
+            )),
           ],
         ),
       ),

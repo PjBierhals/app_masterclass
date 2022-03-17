@@ -81,9 +81,14 @@ class CpfModel {
         resultFinal = result + resultFinal;
         multip--;
       }
+
       var value = 11 - (resultFinal % 11);
-      cpfNine.add(value);
-      auxVez++;
+      if (value > 9) {
+        auxVez--;
+      } else {
+        cpfNine.add(value);
+        auxVez++;
+      }
     } while (auxVez < 2);
 
     return cpfNine;
