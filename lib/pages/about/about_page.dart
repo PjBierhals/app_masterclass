@@ -39,19 +39,19 @@ class _AboutPageState extends State<AboutPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Image.asset('assets/images/awesome-facebook-f.png'),
+                      Image.asset('assets/icons/ionic-logo-whatsapp.png'),
                       const SizedBox(
                         width: 10,
                       ),
-                      Image.asset('assets/images/logo.png'),
+                      Image.asset('assets/icons/awesome-github-alt.png'),
                       const SizedBox(
                         width: 10,
                       ),
-                      Image.asset('assets/images/logo.png'),
+                      Image.asset('assets/icons/awesome-instagram.png'),
                       const SizedBox(
                         width: 10,
                       ),
-                      Image.asset('assets/images/logo.png'),
+                      Image.asset('assets/icons/awesome-facebook.png'),
                     ],
                   ),
                 ],
@@ -79,8 +79,9 @@ class _AboutPageState extends State<AboutPage> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Image.asset('assets/images/logo.png'),
-                              const Text("flutter"),
+                              Padding(padding: EdgeInsets.all(5)),
+                              Image.asset('assets/images/simple-flutter.png'),
+                              const Text("Flutter"),
                             ],
                           ),
                         ),
